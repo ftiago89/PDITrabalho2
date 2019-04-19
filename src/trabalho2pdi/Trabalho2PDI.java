@@ -23,7 +23,7 @@ public class Trabalho2PDI {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        File file = new File("saida.txt");
+        /*File file = new File("saida.txt");
         double[] dados = new double[125204];
         int contador = 0;
         DCT dct = new DCT();
@@ -43,10 +43,16 @@ public class Trabalho2PDI {
         
         double[] sinalSlides = {11.525440313875107, 5.928601339677928, 2.1516074520608317, 0.46931780058050926, -0.5441192338744232, 0.9595444035148329, 3.688168866104265, 4.10571030552285};
                 
-        RunDCT teste = new RunDCT(dados);
+        RunDCT teste = new RunDCT(sinalSlides);
         double[] resultadoFinal = teste.getResultadoFinal();
         
-        for(int i = 0; i<resultadoFinal.length; ++i) System.out.println(resultadoFinal[i]);
+        for(int i = 0; i<resultadoFinal.length; ++i) System.out.println(resultadoFinal[i]);*/
+        
+        AudioIO teste = new AudioIO("audio.wav");
+        int[][] samples = teste.readAudio();
+        for(int i=0; i<samples[0].length;++i){
+            System.out.println(samples[0][i]);
+        }
     } 
    
 }
