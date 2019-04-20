@@ -17,9 +17,18 @@ public class Principal {
     public static void main(String[] args) {
         RunDCT runDct;
         RunIDCT runIDct;
+        double[] cossenosPosCorte;
         double[] sinalSlides = {11.525440313875107, 5.928601339677928, 2.1516074520608317, 0.46931780058050926, -0.5441192338744232, 0.9595444035148329, 3.688168866104265, 4.10571030552285};
         
-        AudioIO teste = new AudioIO("audio.wav");
+        runDct = new RunDCT(sinalSlides);
+        double[] cossenos = runDct.getResultadoFinal();
+        CortaCossenos teste = new CortaCossenos(cossenos, 4);
+        cossenosPosCorte = teste.getSaida();
+        runIDct = new RunIDCT(cossenosPosCorte);
+        double[] sinalProcessado = runIDct.getResultadoFinal();
+        
+        for(int i=0;i<sinalProcessado.length; ++i) System.out.println(sinalProcessado[i]);
+        /*AudioIO teste = new AudioIO("audio.wav");
         double[][] samples = teste.readAudio();
         //for(int i=0; i<samples[0].length;++i){
         //    System.out.println(samples[0][i]);
@@ -39,7 +48,7 @@ public class Principal {
         System.out.println("Sinal de volta:");
         for(int i = 0; i < sinalVolta.length; ++i){
             System.out.println(sinalVolta[i]);
-        }
+        }*/
         
         
     } 
