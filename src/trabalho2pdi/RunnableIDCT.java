@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package trabalho2pdi;
 
-/**
- *
- * @author Felipe
- */
+//classe que representa o objeto runnable que vai ser rodado pela thread
+//tudo que ele faz é rodar o metodo IDCT de n até limite do vetor X[k].
 public class RunnableIDCT implements Runnable{
     private double[] cossenos;
     private int N;

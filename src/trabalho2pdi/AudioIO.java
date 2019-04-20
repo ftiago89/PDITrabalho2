@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package trabalho2pdi;
 
 import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
-/**
- *
- * @author Felipe
- */
+//classe para processar o audio
 public class AudioIO {
     private String nomeArquivo;
     
@@ -20,6 +13,7 @@ public class AudioIO {
         this.nomeArquivo = nomeArquivo;
     }
 
+    //le o audio e extrai as informacoes para serem trabalhadas.
     public double[][] readAudio() {
         File file = new File(this.nomeArquivo);
         AudioInputStream ais = null;

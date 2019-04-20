@@ -1,56 +1,60 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package trabalho2pdi;
 
-/**
- *
- * @author Felipe
- */
+import java.util.Scanner;
+
+
 public class Principal {
 
-    /**
-     * @param args the command line arguments
-     */
+    //metodo principal onde as questoes sao respondidas
     public static void main(String[] args) {
         RunDCT runDct;
         RunIDCT runIDct;
-        double[] cossenosPosCorte;
+        DeslocaFrequencia deslocaFrequencia;
+        CortaCossenos cortaCossenos;
+        double[] resultadoTemp = null;
         double[] sinalSlides = {11.525440313875107, 5.928601339677928, 2.1516074520608317, 0.46931780058050926, -0.5441192338744232, 0.9595444035148329, 3.688168866104265, 4.10571030552285};
+        Grafico grafico = new Grafico();
         
-        runDct = new RunDCT(sinalSlides);
-        double[] cossenos = runDct.getResultadoFinal();
-        CortaCossenos teste = new CortaCossenos(cossenos, 4);
-        cossenosPosCorte = teste.getSaida();
-        runIDct = new RunIDCT(cossenosPosCorte);
-        double[] sinalProcessado = runIDct.getResultadoFinal();
-        
-        for(int i=0;i<sinalProcessado.length; ++i) System.out.println(sinalProcessado[i]);
-        /*AudioIO teste = new AudioIO("audio.wav");
+        AudioIO teste = new AudioIO("audios/audio.wav");
         double[][] samples = teste.readAudio();
-        //for(int i=0; i<samples[0].length;++i){
-        //    System.out.println(samples[0][i]);
-        //}
         
-        runDct = new RunDCT(samples[0]);
-        double[] cossenos = runDct.getResultadoFinal();
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Qual questão? ");
+        int questao = Integer.valueOf(scan.next());
         
-        System.out.println("Cossenos:");
-        for(int i = 0; i < cossenos.length; ++i){
-            System.out.println(cossenos[i]);
+        //TRATAMENTO DAS QUESTOES
+        switch(questao){
+            //questao 1
+            case 1:
+                System.out.print("Valor de n para corte dos cossenos: ");
+                int n = Integer.valueOf(scan.next());
+                runDct = new RunDCT(samples[0]);//passa pro dominio da frequencia
+                resultadoTemp = runDct.getResultadoFinal();//pega o array de cossenos
+                cortaCossenos = new CortaCossenos(resultadoTemp, n);//aplica um corte dos n cossenos mais importantes e zera os demais
+                grafico.plotar(resultadoTemp, n+"cossenosmaisimportantes.png", "X[k] com "+n+" Cossenos mais Importantes", "k");//plota o grafico de X[k]
+                runIDct = new RunIDCT(resultadoTemp);//dct inversa pra voltar da frequencia pro espaco
+                double[] sinalVolta = runIDct.getResultadoFinal();//pega o sinal modificado
+                grafico.plotar(sinalVolta, "voltacom"+n+"cossenosmaisimportantes.png", "x[n] com "+n+" Cossenos mais Importantes", "n");//plota o grafico de x[n]
+                break;
+            //questao 2
+            case 2:
+                //fazer
+                break;
+            //questao 3
+            case 3:
+                System.out.print("Valor de c para deslocamento: ");
+                int c = Integer.valueOf(scan.next());
+                if(resultadoTemp == null){//se a questao 1 ja tiver sido feita, nao precisa passar de novo pra frequencia o sinal original
+                    runDct = new RunDCT(samples[0]);
+                    resultadoTemp = runDct.getResultadoFinal();
+                }
+                deslocaFrequencia = new DeslocaFrequencia(resultadoTemp, c);//aplica um deslocamento no array das frequencias
+                grafico.plotar(resultadoTemp, c+"cossenosdeslocados.png", "X[k] = X[k+"+c+"]", "k");//plota o grafico de X[k] deslocado
+                runIDct = new RunIDCT(resultadoTemp);//dct inversa para voltar da frequencia para o espaco os X[k] deslocado
+                double[] sinalDeslocado = runIDct.getResultadoFinal();//pega o array resultado da dct inversa
+                grafico.plotar(sinalDeslocado, "sinaldeslocadoem"+c+".png", "x[n] após deslocamento "+c, "n");//plota grafico de x[n] deslocado
+                break;
         }
-        
-        runIDct = new RunIDCT(cossenos);
-        double[] sinalVolta = runIDct.getResultadoFinal();
-        
-        System.out.println("Sinal de volta:");
-        for(int i = 0; i < sinalVolta.length; ++i){
-            System.out.println(sinalVolta[i]);
-        }*/
-        
-        
     } 
-   
 }

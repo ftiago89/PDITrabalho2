@@ -1,20 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package trabalho2pdi;
 
 import java.util.Arrays;
 
-/**
- *
- * @author Felipe
- */
+//classe que vai dividir o vetor X[k] em 4 para ser calculado por 4 threads.
 public class RunIDCT {
     private double[] cossenos1, cossenos2, cossenos3, cossenos4, resultadoFinal;
     private RunnableIDCT r1, r2, r3, r4;
     
+    //copia os arrays para nao dar problema de sincronismo
     public RunIDCT(double[] cossenos){
         this.cossenos1 = cossenos;
         this.cossenos2 = Arrays.copyOf(cossenos1, cossenos1.length);
@@ -23,6 +17,7 @@ public class RunIDCT {
         run();
     }
     
+    //divide os limites que cada runnable vai rodar e executa em 4 threads
     private void run(){
         int step = cossenos1.length/4;
         
@@ -41,8 +36,9 @@ public class RunIDCT {
         Thread t4 = new Thread(r4);
         t4.start();
         
+        //espera todas as execuções acabarem
         while (t1.isAlive() || t2.isAlive() || t3.isAlive() || t4.isAlive()){
-            ;
+            ;//comando vazio
         }
         /*
         for(int i = 0; i<r2.getResultadoParte().length; ++i) System.out.print(r2.getResultadoParte()[i] + " ");
@@ -51,10 +47,12 @@ public class RunIDCT {
         for(int i = 0; i<r4.getResultadoParte().length; ++i) System.out.print(r4.getResultadoParte()[i] + " ");
         */
         
+        //junta os 4 vetores resultantes das 4 threads e forma o x[n]
         resultadoFinal = combine(r1.getResultadoParte(), r2.getResultadoParte(),
                 r3.getResultadoParte(), r4.getResultadoParte());
     }
     
+    //concatena 4 arrays
     private double[] combine(double[] a, double[] b, double[] c, double[] d){
         int length = a.length + b.length + c.length + d.length;
         double[] result = new double[length];

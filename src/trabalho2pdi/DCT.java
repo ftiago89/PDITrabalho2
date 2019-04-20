@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package trabalho2pdi;
 
 import static java.lang.Math.cos;
 
-/**
- *
- * @author Felipe
- */
+//classe que aplica as operacoes de DCT e inversa DCT
 public class DCT {
+    //DCT
     public double[] Dct(double[] x, int k, int limite, int N){
         double[] X = new double[limite-k];
         double soma;
@@ -24,6 +18,9 @@ public class DCT {
         double fase;
         int kaux = 0;
         
+        //como o calculo e feito por 4 threads, entao o k precisa ser passado na thread
+        //e o limite é o limite do X[k] que essa thread está calculando.
+        //O array X[k] é dividido em 4 e cada thread calcula o array X[k] de k até limite. 
         for (; k < limite; ++k){
             piK2 = piPorN*k;
             fase = piPor2N*k;
@@ -41,6 +38,7 @@ public class DCT {
         return X;
     }
     
+    //DCT inversa
     public double[] IDct(double[] X, int n, int limite, int N){
         double[] x = new double[limite-n];
         double ck;
@@ -52,6 +50,9 @@ public class DCT {
         double pin2;
         int naux = 0;
         
+        //como o calculo e feito por 4 threads, entao o n precisa ser passado na thread
+        //e o limite é o limite do x[n] que essa thread está calculando.
+        //O array x[n] é dividido em 4 e cada thread calcula o array x[n] de n até limite.
         for (;n<limite;++n){
             pin2 = piPorN*n;
             soma = 0.0;
