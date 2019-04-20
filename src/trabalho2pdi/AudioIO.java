@@ -20,7 +20,7 @@ public class AudioIO {
         this.nomeArquivo = nomeArquivo;
     }
 
-    public int[][] readAudio() {
+    public double[][] readAudio() {
         File file = new File(this.nomeArquivo);
         AudioInputStream ais = null;
         try {
@@ -32,7 +32,7 @@ public class AudioIO {
             int result = ais.read(eightBitByteArray);
 
             int channels = ais.getFormat().getChannels();
-            int[][] samples = new int[channels][frameLength];
+            double[][] samples = new double[channels][frameLength];
 
             int sampleIndex = 0;
             for (int t = 0; t < eightBitByteArray.length;) {
@@ -42,7 +42,7 @@ public class AudioIO {
                     int high = (int) eightBitByteArray[t];
                     t++;
                     int sample = getSixteenBitSample(high, low);
-                    samples[channel][sampleIndex] = sample;
+                    samples[channel][sampleIndex] = (double)sample;
                 }
                 sampleIndex++;
             }
