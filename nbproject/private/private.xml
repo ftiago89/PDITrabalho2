@@ -3,16 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/RunIDCT.java</file>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/DeslocaFrequencia.java</file>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/DCT.java</file>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/RunnableDCT.java</file>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/AudioIO.java</file>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/RunDCT.java</file>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/RunnableIDCT.java</file>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/CortaCossenos.java</file>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/Principal.java</file>
-            <file>file:/C:/Users/Felipe/Desktop/trabalho2PDI/src/trabalho2pdi/Grafico.java</file>
+            <file>file:/C:/Users/felipe/Google%20Drive/Ciência%20da%20Computação/Disciplinas/Introdução%20Processamento%20Digital%20de%20Imagens/PDITrabalho2-master/src/trabalho2pdi/Principal.java</file>
+            <file>file:/C:/Users/felipe/Google%20Drive/Ciência%20da%20Computação/Disciplinas/Introdução%20Processamento%20Digital%20de%20Imagens/PDITrabalho2-master/src/trabalho2pdi/DCT.java</file>
+            <file>file:/C:/Users/felipe/Google%20Drive/Ciência%20da%20Computação/Disciplinas/Introdução%20Processamento%20Digital%20de%20Imagens/PDITrabalho2-master/src/trabalho2pdi/CortaCossenos.java</file>
+            <file>file:/C:/Users/felipe/Google%20Drive/Ciência%20da%20Computação/Disciplinas/Introdução%20Processamento%20Digital%20de%20Imagens/PDITrabalho2-master/src/trabalho2pdi/Grafico.java</file>
+            <file>file:/C:/Users/felipe/Google%20Drive/Ciência%20da%20Computação/Disciplinas/Introdução%20Processamento%20Digital%20de%20Imagens/PDITrabalho2-master/src/trabalho2pdi/DeslocaFrequencia.java</file>
         </group>
     </open-files>
 </project-private>
