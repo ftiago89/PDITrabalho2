@@ -1,16 +1,92 @@
-
 package trabalho2pdi;
 
-import java.util.Scanner;
-
+import DCT.RunDCT;
+import DCT.RunIDCT;
+import org.opencv.core.Mat;
 
 public class Principal {
 
     //metodo principal onde as questoes sao respondidas
     public static void main(String[] args) {
+        
         RunDCT runDct;
         RunIDCT runIDct;
-        DeslocaFrequencia deslocaFrequencia;
+
+        Filtros filtro = new Filtros();
+        ImageIO img = new ImageIO();
+        
+        Mat imagem = img.getImage("lena.bmp");
+        
+        //img.showImage("lena", imagem);
+        
+        //Mat matImgFinal = new Mat(imagem.rows(), imagem.co);
+        
+        System.err.println(imagem.get(0,0)[0]);
+        
+        double[][] data = img.getData(imagem, 0);
+        
+        
+        
+        System.out.println("\n\n**Original**\n\n");
+        //exibeMatriz(img);
+        
+        System.out.println("\n\n**Indo para D(freq)**\n\n");
+        data = filtro.FrequenciaImg(data);
+        double [] v = data[0];
+        
+        exibe(v);
+        
+        System.out.println("\n\n**Indo para D(esp)**\n\n");
+        
+        
+        data = filtro.espacoImg(data);
+        v = data[0];
+        exibe(v);
+        //exibeMatriz(img);
+        
+        
+        Mat nova = img.returnData(data, imagem);
+        
+        img.showImage("lena", nova);
+        
+        //exibeMatriz(data);
+        
+
+        /*double[][] img = new double[8][8];
+
+        img[0][0] = 10;        img[0][1] = 5;        img[0][2] = 2;        img[0][3] = 8.5;    img[0][4] = 1;        img[0][5] = 1.5;        img[0][6] = 0;    img[0][7] = 0.1;
+        img[1][0] = 10;        img[1][1] = 5;        img[1][2] = 2;        img[1][3] = 8.5;    img[1][4] = 1;        img[1][5] = 1.5;        img[1][6] = 0;    img[1][7] = 0.1;
+        img[2][0] = 10;        img[2][1] = 5;        img[2][2] = 2;        img[2][3] = 8.5;    img[2][4] = 1;        img[2][5] = 1.5;        img[2][6] = 0;    img[2][7] = 0.1;
+        img[3][0] = 10;        img[3][1] = 5;        img[3][2] = 2;        img[3][3] = 8.5;    img[3][4] = 1;        img[3][5] = 1.5;        img[3][6] = 0;    img[3][7] = 0.1;
+        
+        double[][] img2 = new double[8][8];
+
+        img2[0][0] = 0;        img2[0][1] = 0;        img2[0][2] = 0;        img2[0][3] = 0;    img2[0][4] = 0;        img2[0][5] = 0;        img2[0][6] = 0;        img2[0][7] = 0;
+        img2[1][0] = 0;        img2[1][1] = 1;        img2[1][2] = 0;        img2[1][3] = 1;    img2[1][4] = 0;        img2[1][5] = 1;        img2[1][6] = 0;        img2[1][7] = 1;
+        img2[2][0] = 1;        img2[2][1] = 0;        img2[2][2] = 1;        img2[2][3] = 0;    img2[2][4] = 1;        img2[2][5] = 0;        img2[2][6] = 1;        img2[2][7] = 0;
+        img2[3][0] = 0;        img2[3][1] = 1;        img2[3][2] = 0;        img2[3][3] = 1;    img2[3][4] = 0;        img2[3][5] = 1;        img2[3][6] = 0;        img2[3][7] = 1;
+
+        
+        System.out.println("\n\n**Original**\n\n");
+        //exibeMatriz(img);
+        
+        System.out.println("\n\n**Indo para D(freq)**\n\n");
+        img = filtro.FrequenciaImg(img);
+        //exibeMatriz(img);
+        
+        System.out.println("\n\n**Indo para D(esp)**\n\n");
+        img = filtro.espacoImg(img);
+        //exibeMatriz(img);
+         */
+ /*
+        img2[0] = new RunIDCT(img[0]).getResultadoFinal();
+        exibeMatriz(img2);
+        
+        img2[0] = new RunDCT(img2[0]).getResultadoFinal();
+        exibeMatriz(img2);
+         */
+ /*
+DeslocaFrequencia deslocaFrequencia;
         CortaCossenos cortaCossenos;
         double[] resultadoTemp = null;
         double[] sinalSlides = {11.525440313875107, 5.928601339677928, 2.1516074520608317, 0.46931780058050926, -0.5441192338744232, 0.9595444035148329, 3.688168866104265, 4.10571030552285};
@@ -62,6 +138,23 @@ public class Principal {
                     grafico.plotar(sinalDeslocado, "sinaldeslocadoem" + c + ".png", "x[n] após deslocamento " + c, "n");//plota grafico de x[n] deslocado
                     break;
             }
+
+        }
+         */
+    }
+
+    public static void exibe(double[] vetor) {
+        for (int i = 0; i < vetor.length; i++) {
+            System.err.print(vetor[i] + "\t");
+        }
+    }
+
+    public static void exibeMatriz(double vetor[][]) {
+        for (int i = 0; i < vetor.length; i++) {
+            for (int j = 0; j < vetor[0].length; j++) {
+                System.out.print(vetor[i][j] + "\t");
+            }
+            System.out.println("");
         }
     }
 }
