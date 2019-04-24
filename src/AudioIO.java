@@ -1,5 +1,10 @@
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
@@ -52,6 +57,18 @@ public class AudioIO {
             }
         }
         return null;
+    }
+    
+    public void writeAudio(double[] samples){
+        try {
+            BufferedWriter buffWrite = new BufferedWriter(new FileWriter("samplesAudio/audioSaida.txt"));
+            for(int i = 0; i<samples.length; ++i){
+                buffWrite.append(samples[i] + "\n");
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(AudioIO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     protected int getSixteenBitSample(int high, int low) {

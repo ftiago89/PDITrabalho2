@@ -1,40 +1,17 @@
 
 import filters.Filtros;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import static org.hamcrest.CoreMatchers.is;
+import java.util.Scanner;
 
 public class Principal {
 
     //metodo principal onde as questoes sao respondidas
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        Filtros filtro = new Filtros();
 
-        ImageIO imageIO = new ImageIO();
 
         //new Questoes().questao2(100);
-        AudioIO teste = new AudioIO("src/samplesAudio/audio.wav");
-        double[][] samples = teste.readAudio();
-
-        try {
-
-            String path = "";
-            OutputStream outstream = new FileOutputStream (new File("som_audio.wav"));
-            I
-            byte[] buffer = new byte[4096];
-            int len;
-            long t = System.currentTimeMillis();
-
-            while ((len = samples.read(buffer)) > 0 && System.currentTimeMillis() - t <= 30000) {
-                outstream.write(buffer, 0, len);
-                System.out.println(len);
-            }
-            outstream.close();
-        }
 
         /*
         
@@ -76,22 +53,15 @@ public class Principal {
         img2[0] = new RunDCT(img2[0]).getResultadoFinal();
         exibeMatriz(img2);
          */
- /*
-        
- DeslocaFrequencia deslocaFrequencia;
-        CortaCossenos cortaCossenos;
-        double[] resultadoTemp = null;
-        double[] sinalSlides = {11.525440313875107, 5.928601339677928, 2.1516074520608317, 0.46931780058050926, -0.5441192338744232, 0.9595444035148329, 3.688168866104265, 4.10571030552285};
-        Grafico grafico = new Grafico();
-        
-        AudioIO teste = new AudioIO("audios/audio.wav");
-        double[][] samples = teste.readAudio();
+ 
+
         
         Scanner scan = new Scanner(System.in);
-        System.out.print("Qual questão? ");
+        
         
         
         while(true){
+            System.out.print("Qual questão? ");
             int questao = Integer.valueOf(scan.next());
 
             //TRATAMENTO DAS QUESTOES
@@ -100,39 +70,22 @@ public class Principal {
                 case 1:
                     System.out.print("Valor de n para corte dos cossenos: ");
                     int n = Integer.valueOf(scan.next());
-                    runDct = new RunDCT(samples[0]);//passa pro dominio da frequencia
-                    if (resultadoTemp == null) {//se a questao 1 ja tiver sido feita, nao precisa passar de novo pra frequencia o sinal original
-                        runDct = new RunDCT(samples[0]);
-                        resultadoTemp = runDct.getResultadoFinal();
-                    }
-                    cortaCossenos = new CortaCossenos(resultadoTemp, n);//aplica um corte dos n cossenos mais importantes e zera os demais
-                    grafico.plotar(cortaCossenos.getSaida(), n + "cossenosmaisimportantes.png", "X[k] com " + n + " Cossenos mais Importantes", "k");//plota o grafico de X[k]
-                    runIDct = new RunIDCT(cortaCossenos.getSaida());//dct inversa pra voltar da frequencia pro espaco
-                    double[] sinalVolta = runIDct.getResultadoFinal();//pega o sinal modificado
-                    grafico.plotar(sinalVolta, "voltacom" + n + "cossenosmaisimportantes.png", "x[n] com " + n + " Cossenos mais Importantes", "n");//plota o grafico de x[n]
+                    new Questoes().questao1(n);
                     break;
                 //questao 2
                 case 2:
-                    //fazer
+                    System.out.print("Valor de n para corte dos cossenos: ");
+                    int n2 = Integer.valueOf(scan.next());
+                    new Questoes().questao2(n2);
                     break;
                 //questao 3
                 case 3:
                     System.out.print("Valor de c para deslocamento: ");
                     int c = Integer.valueOf(scan.next());
-                    if (resultadoTemp == null) {//se a questao 1 ja tiver sido feita, nao precisa passar de novo pra frequencia o sinal original
-                        runDct = new RunDCT(samples[0]);
-                        resultadoTemp = runDct.getResultadoFinal();
-                    }
-                    deslocaFrequencia = new DeslocaFrequencia(resultadoTemp, c);//aplica um deslocamento no array das frequencias
-                    grafico.plotar(resultadoTemp, c + "cossenosdeslocados.png", "X[k] = X[k+" + c + "]", "k");//plota o grafico de X[k] deslocado
-                    runIDct = new RunIDCT(resultadoTemp);//dct inversa para voltar da frequencia para o espaco os X[k] deslocado
-                    double[] sinalDeslocado = runIDct.getResultadoFinal();//pega o array resultado da dct inversa
-                    grafico.plotar(sinalDeslocado, "sinaldeslocadoem" + c + ".png", "x[n] após deslocamento " + c, "n");//plota grafico de x[n] deslocado
                     break;
             }
 
         }
-         */
     }
 
     public static void exibe(double[] vetor) {
