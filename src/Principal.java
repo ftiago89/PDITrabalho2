@@ -1,40 +1,31 @@
 
-import filters.Filtros;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import static org.hamcrest.CoreMatchers.is;
 
 public class Principal {
 
     //metodo principal onde as questoes sao respondidas
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        Filtros filtro = new Filtros();
-
-        ImageIO imageIO = new ImageIO();
-
         //new Questoes().questao2(100);
         AudioIO teste = new AudioIO("src/samplesAudio/audio.wav");
         double[][] samples = teste.readAudio();
 
-        try {
+        System.err.println(samples.length);
+        System.err.println(samples[0].length);
+   
+        byte[] aux = new byte[samples[0].length];
 
-            String path = "";
-            OutputStream outstream = new FileOutputStream (new File("som_audio.wav"));
-            I
-            byte[] buffer = new byte[4096];
-            int len;
-            long t = System.currentTimeMillis();
-
-            while ((len = samples.read(buffer)) > 0 && System.currentTimeMillis() - t <= 30000) {
-                outstream.write(buffer, 0, len);
-                System.out.println(len);
-            }
-            outstream.close();
+        for (int i = 0; i < samples[0].length; i++){
+            
+            aux[i] = (byte) samples[0][i];
+       
         }
+        teste.writeAudio(aux);
 
         /*
         
